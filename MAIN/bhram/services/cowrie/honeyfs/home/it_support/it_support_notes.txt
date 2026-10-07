@@ -1,0 +1,37 @@
+IT Support Notes — Jordan Ellis
+Last updated: 2025-09-12
+================================================================
+
+= Open Tickets =
+
+TICKET-4421 (HIGH) — Casey Thompson (intern) requests access to K8s dashboard
+  Status: Pending manager approval (Sam Nakamura)
+  
+TICKET-4398 (MED) — Priya Sharma laptop battery recall — Dell XPS 15 (9530)
+  Status: Replacement shipped, awaiting return of old unit
+  
+TICKET-4352 (LOW) — Conference room BLR-3 projector HDMI cable missing
+  Status: Ordered replacement
+
+= Recurring Maintenance =
+
+Every Monday 23:00 IST:
+  - DB backup verification: ssh admin@db-primary.internal 'pg_dump bhram_prod_db | gzip > /backup/weekly.sql.gz'
+  - Check disk usage: df -h on all servers via Ansible playbook
+  
+Every Sunday 02:00 IST:
+  - Patch cycle: ansible-playbook -i inventory/production.ini playbooks/patch.yml
+  - Vault seal check: curl https://vault.internal:8200/v1/sys/health
+
+= Admin Credentials Rotation Schedule =
+  Vault root token: Rotate every 30 days — see Vault docs
+  GitLab root: Rotate every 90 days
+  DB superuser: Rotate every 60 days
+  NOTE: All credentials managed via vault.bhram-technologies.internal
+        Path: secret/infra/admin-accounts
+
+= Quick Reference =
+  Jump host: ssh -J admin@10.0.1.1 admin@<target>
+  Ansible inventory: /opt/ansible/inventory/production.ini
+  Monitoring: http://monitoring.internal:3000 (Grafana)
+  Alerting: alert-manager.internal:9093

@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}BHRAM Technologies — Enterprise Cybersecurity Solutions{% endblock %}
+{% block meta_desc %}BHRAM Technologies delivers enterprise-grade cybersecurity, cloud infrastructure, and threat intelligence solutions to Fortune 500 companies worldwide.{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+    </div>
+    <div class="hero-container">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Enterprise Cybersecurity Leader 2025
+        </div>
+        <h1 class="hero-title">
+            Securing Enterprise<br>
+            <span class="hero-gradient">Infrastructure</span> at Scale
+        </h1>
+        <p class="hero-subtitle">
+            BHRAM Technologies delivers next-generation threat intelligence, 
+            cloud security, and managed SOC services to protect your most critical assets.
+        </p>
+        <div class="hero-cta">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Request a Demo</a>
+            <a href="{{ url_for('about') }}" class="btn btn-ghost">Learn More →</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-value">500+</span>
+                <span class="stat-label">Enterprise Clients</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-value">99.97%</span>
+                <span class="stat-label">Uptime SLA</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-value">18B+</span>
+                <span class="stat-label">Events/Day Analyzed</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-value">24/7</span>
+                <span class="stat-label">SOC Coverage</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="section" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Solutions</h2>
+            <p class="section-subtitle">Comprehensive cybersecurity services built for the modern enterprise threat landscape.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h3>Threat Intelligence</h3>
+                <p>Real-time global threat feeds, IOC enrichment, and adversary profiling powered by our proprietary TI platform.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <path d="M8 21h8M12 17v4"/>
+                    </svg>
+                </div>
+                <h3>Managed SOC</h3>
+                <p>24/7 Security Operations Center staffed by certified analysts monitoring your environment around the clock.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M2.5 18.5l1.25-7.5L8 14l4-9 4 9 4.25-3 1.25 7.5"/>
+                        <path d="M2 18.5h20"/>
+                    </svg>
+                </div>
+                <h3>Cloud Security</h3>
+                <p>Native cloud security posture management for AWS, Azure, and GCP with automated compliance enforcement.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </div>
+                <h3>Penetration Testing</h3>
+                <p>Expert red team engagements, vulnerability assessments, and code security reviews by OSCP-certified testers.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                </div>
+                <h3>Compliance & GRC</h3>
+                <p>ISO 27001, SOC 2, PCI DSS, and GDPR readiness assessments with ongoing compliance monitoring.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4l3 3"/>
+                    </svg>
+                </div>
+                <h3>Incident Response</h3>
+                <p>Rapid incident response retainer services with guaranteed 1-hour SLA for critical security events.</p>
+                <a href="#" class="service-link">Learn more →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section class="section section-dark" id="clients">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Trusted by Industry Leaders</h2>
+        </div>
+        <div class="clients-grid">
+            <div class="client-logo">NexaBank Corp</div>
+            <div class="client-logo">Infovault Systems</div>
+            <div class="client-logo">Meridian Health</div>
+            <div class="client-logo">Arcturus Energy</div>
+            <div class="client-logo">GlobalTrade Ltd</div>
+            <div class="client-logo">Pinnacle Finance</div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack (Deception artifact — fictional stack) -->
+<section class="section" id="technology">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Technology Platform</h2>
+            <p class="section-subtitle">Built on a robust, battle-tested infrastructure stack.</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-item"><span class="tech-badge">Python 3.11</span></div>
+            <div class="tech-item"><span class="tech-badge">Apache Kafka</span></div>
+            <div class="tech-item"><span class="tech-badge">Elasticsearch 8.x</span></div>
+            <div class="tech-item"><span class="tech-badge">PostgreSQL 15</span></div>
+            <div class="tech-item"><span class="tech-badge">Redis 7</span></div>
+            <div class="tech-item"><span class="tech-badge">Kubernetes</span></div>
+            <div class="tech-item"><span class="tech-badge">Grafana</span></div>
+            <div class="tech-item"><span class="tech-badge">Prometheus</span></div>
+            <div class="tech-item"><span class="tech-badge">Vault by HashiCorp</span></div>
+            <div class="tech-item"><span class="tech-badge">Terraform</span></div>
+            <div class="tech-item"><span class="tech-badge">Ansible 2.16</span></div>
+            <div class="tech-item"><span class="tech-badge">GitLab CI/CD</span></div>
+        </div>
+        <!-- Deception artifact: internal hostnames visible in page source -->
+        <!-- Internal systems: 
+             intranet: http://{{ intranet_host }}
+             vpn:      https://{{ vpn_host }}
+             mail:     https://{{ mail_host }}
+             git:      https://{{ git_host }}
+        -->
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-box">
+            <h2>Ready to Secure Your Infrastructure?</h2>
+            <p>Our security engineers are available 24/7. Start with a free security posture assessment.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Get Started Today</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

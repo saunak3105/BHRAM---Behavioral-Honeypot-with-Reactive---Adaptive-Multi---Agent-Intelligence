@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}About Us — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>About BHRAM Technologies</h1>
+        <p>Founded in 2011, we are a global cybersecurity company headquartered in Bengaluru, India.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2>Our Mission</h2>
+                <p>BHRAM Technologies exists to make enterprise-grade cybersecurity accessible, intelligent, and adaptive. We believe that the future of security lies not in reactive measures, but in proactive, behavior-driven defense systems that evolve with the threat landscape.</p>
+
+                <h2>Our History</h2>
+                <p>BHRAM Technologies was incorporated in 2011 by a team of former DRDO and IIT researchers with a shared vision: build security technology that thinks like an attacker. From our first managed SOC deployment in 2013 to our AI-driven threat platform launched in 2022, we have grown to serve over 500 enterprise clients across 42 countries.</p>
+
+                <h2>Technology Philosophy</h2>
+                <p>We operate on the principle of "assume breach" — designing all our systems to detect, deceive, and contain attackers even when perimeter defenses have been bypassed. Our proprietary MITRE ATT&CK alignment engine classifies attacker behavior in real time, enabling our SOC analysts to respond with surgical precision.</p>
+            </div>
+            <div class="about-sidebar">
+                <div class="info-card">
+                    <h3>Company Facts</h3>
+                    <table class="info-table">
+                        <tr><td>Founded</td><td>2011</td></tr>
+                        <tr><td>Headquarters</td><td>Bengaluru, India</td></tr>
+                        <tr><td>Employees</td><td>~340</td></tr>
+                        <tr><td>Offices</td><td>5 (India, UK, UAE, Singapore, US)</td></tr>
+                        <tr><td>Clients</td><td>500+</td></tr>
+                        <tr><td>Certifications</td><td>ISO 27001, SOC 2 Type II</td></tr>
+                        <tr><td>Revenue (FY25)</td><td>₹ 182 Cr</td></tr>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h3>Leadership</h3>
+                    <div class="team-list">
+                        <div class="team-member">
+                            <div class="member-avatar">AM</div>
+                            <div>
+                                <strong>Alex Mercer</strong>
+                                <span>CEO & Co-Founder</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">SN</div>
+                            <div>
+                                <strong>Sam Nakamura</strong>
+                                <span>CTO & Co-Founder</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">MC</div>
+                            <div>
+                                <strong>Morgan Chen</strong>
+                                <span>CFO</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">RP</div>
+                            <div>
+                                <strong>Riley Patel</strong>
+                                <span>VP People & Culture</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">JE</div>
+                            <div>
+                                <strong>Jordan Ellis</strong>
+                                <span>Head of IT Infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departments (deception artifact) -->
+        <div class="section-header" style="margin-top: 3rem;">
+            <h2 class="section-title">Our Departments</h2>
+        </div>
+        <div class="dept-grid">
+            <div class="dept-card">
+                <h3>Engineering</h3>
+                <p>Platform development, security tooling, and R&D. Our engineers work on the BHRAM platform core, API services, and AI/ML systems.</p>
+                <span class="dept-size">~120 engineers</span>
+            </div>
+            <div class="dept-card">
+                <h3>Security Operations</h3>
+                <p>24/7 SOC, threat hunting, and incident response. Staffed by certified analysts across our global office network.</p>
+                <span class="dept-size">~80 analysts</span>
+            </div>
+            <div class="dept-card">
+                <h3>IT Infrastructure</h3>
+                <p>Internal IT support, network operations, and system administration for BHRAM's own environments.</p>
+                <span class="dept-size">~25 engineers</span>
+            </div>
+            <div class="dept-card">
+                <h3>Finance</h3>
+                <p>Financial planning, accounts, payroll, and investor relations. Reports directly to the CFO.</p>
+                <span class="dept-size">~15 members</span>
+            </div>
+            <div class="dept-card">
+                <h3>Human Resources</h3>
+                <p>Talent acquisition, employee development, performance management, and organizational culture.</p>
+                <span class="dept-size">~12 members</span>
+            </div>
+            <div class="dept-card">
+                <h3>Sales & Partnerships</h3>
+                <p>Enterprise account management, channel partnerships, and business development across all regions.</p>
+                <span class="dept-size">~40 members</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+# =============================================================================
+# Cowrie userdb.txt — Fake SSH User Accounts
+# FORMAT: username:uid:password
+#   password can be a plain text or an asterisk (*) to accept any password
+#   use ! prefix to fail authentication
+#
+# ALL USERNAMES, PASSWORDS, AND CREDENTIALS ARE ENTIRELY FICTIONAL.
+# DO NOT use real passwords here. These are honeypot bait credentials.
+# =============================================================================
+
+# Standard accounts — accept weak/common passwords (to lure attackers)
+root:0:*
+admin:1000:*
+administrator:1001:*
+
+# Fictional BHRAM Technologies employees
+admin:1000:admin
+admin:1000:password
+admin:1000:admin123
+admin:1000:Admin@123
+it_support:1002:*
+it_support:1002:itsupp0rt
+it_support:1002:password
+developer:1003:*
+developer:1003:dev123
+developer:1003:D3veloper!
+finance:1004:*
+finance:1004:finance2024
+hr_manager:1005:*
+hr_manager:1005:hrpassword
+intern:1006:*
+intern:1006:intern2024
+
+# Common default accounts attackers try
+ubuntu:1007:*
+user:1008:*
+test:1009:*
+guest:1010:*
+pi:1011:*
+oracle:1012:*
+mysql:1013:!
+postgres:1014:!

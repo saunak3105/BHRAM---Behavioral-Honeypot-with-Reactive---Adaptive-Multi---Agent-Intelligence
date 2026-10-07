@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_desc %}BHRAM Technologies — Enterprise Cybersecurity and Cloud Infrastructure Solutions{% endblock %}">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Fictional internal metadata — deception artifact -->
+    <meta name="generator" content="BHRAM-CMS v4.2.1">
+    <meta name="author" content="BHRAM Technologies Web Team">
+    <title>{% block title %}BHRAM Technologies{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{{ url_for('index') }}" class="nav-brand">
+            <div class="brand-logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#0ea5e9"/>
+                    <path d="M8 16 L16 8 L24 16 L16 24 Z" fill="white" opacity="0.9"/>
+                    <circle cx="16" cy="16" r="4" fill="#0ea5e9"/>
+                </svg>
+            </div>
+            <span class="brand-name">BHRAM Technologies</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{{ url_for('careers') }}" class="nav-link {% if request.endpoint == 'careers' %}active{% endif %}">Careers</a></li>
+            <li><a href="{{ url_for('support') }}" class="nav-link {% if request.endpoint == 'support' %}active{% endif %}">Support</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+            <li class="nav-divider"></li>
+            <li><a href="{{ url_for('employee') }}" class="nav-link nav-portal">Employee Portal</a></li>
+            <li><a href="{{ url_for('login') }}" class="nav-btn">Sign In</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-container">
+    {% for category, message in messages %}
+    <div class="flash flash-{{ category }}">
+        <span>{{ message }}</span>
+        <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- Main content -->
+<main id="main-content">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#0ea5e9"/>
+                        <path d="M8 16 L16 8 L24 16 L16 24 Z" fill="white" opacity="0.9"/>
+                        <circle cx="16" cy="16" r="4" fill="#0ea5e9"/>
+                    </svg>
+                    <strong>BHRAM Technologies</strong>
+                </div>
+                <p class="footer-tagline">{{ tagline }}</p>
+                <p class="footer-address">
+                    12 Innovation Drive, Suite 400<br>
+                    Techpark, Bengaluru 560 001<br>
+                    Karnataka, India
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                    <li><a href="{{ url_for('careers') }}">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Investors</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Cloud Security</a></li>
+                    <li><a href="#">Threat Intelligence</a></li>
+                    <li><a href="#">Managed SOC</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="{{ url_for('support') }}">Support</a></li>
+                    <li><a href="{{ url_for('documents') }}">Documentation</a></li>
+                    <li><a href="{{ url_for('internal') }}">Intranet</a></li>
+                    <li><a href="#">API Access</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© {{ year }} BHRAM Technologies Pvt. Ltd. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Security</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

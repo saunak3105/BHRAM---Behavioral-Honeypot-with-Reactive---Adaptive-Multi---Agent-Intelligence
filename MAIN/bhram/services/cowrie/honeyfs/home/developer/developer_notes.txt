@@ -1,0 +1,41 @@
+Developer Notes — Sam Nakamura
+Last updated: 2025-09-10
+===============================================================
+
+= Platform Architecture =
+
+Stack: Python 3.11 + FastAPI + PostgreSQL 15 + Redis 7 + Kafka 3.6
+Container orchestration: Kubernetes 1.29 (EKS + on-prem mixed)
+CI/CD: GitLab CI on gitlab.bhram-technologies.internal
+Secrets management: HashiCorp Vault at vault.bhram-technologies.internal:8200
+
+= Dev Environment Setup =
+
+1. Clone: git clone git@gitlab.bhram-technologies.internal:platform/bhram-core.git
+2. Install: make dev-setup
+3. Run locally: docker compose -f compose.dev.yaml up
+4. API docs: http://localhost:8000/docs
+
+= Staging credentials (rotate monthly) =
+DB_HOST: db-staging.bhram-technologies.internal
+DB_NAME: bhram_staging
+NOTE: See Vault path: secret/staging/database for actual credentials.
+      These are NOT stored in this file.
+
+= Production deployment checklist =
+  [x] Run tests: make test
+  [x] Bump version in pyproject.toml
+  [x] Tag: git tag -s vX.Y.Z
+  [x] Pipeline auto-deploys to staging
+  [x] Manual approval needed for prod deploy
+  [x] Post-deploy smoke test: scripts/smoke_test.sh
+
+= Known issues =
+- Kafka consumer group lag alert threshold needs tuning (JIRA: PLAT-2847)
+- Redis eviction policy set to allkeys-lru — monitor memory
+- K8s resource limits for ml-inference pods too low (PLAT-2901)
+
+= TODO =
+- Migrate from AWS EKS us-east-1 to ap-south-1 (cost optimization)
+- Upgrade Elasticsearch from 8.11 to 8.14
+- Implement distributed tracing with Jaeger

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}IT Support — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>IT Support Portal</h1>
+        <p>Submit a ticket, check ticket status, or browse our self-service knowledge base.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="support-grid">
+            <div class="support-form-col">
+                <div class="card">
+                    <h2>Submit a Support Ticket</h2>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <form method="POST" action="{{ url_for('support') }}" id="support-form">
+                        <div class="form-group">
+                            <label for="reporter">Your Name / Username</label>
+                            <input type="text" id="reporter" name="reporter" class="form-control" placeholder="e.g. Casey Thompson" maxlength="128" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="your.name@bhram-technologies.internal" maxlength="256" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category" class="form-control">
+                                <option value="access">Access / Permissions</option>
+                                <option value="hardware">Hardware Issue</option>
+                                <option value="software">Software / Application</option>
+                                <option value="network">Network / VPN</option>
+                                <option value="security">Security Concern</option>
+                                <option value="account">Account / Password Reset</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select id="priority" name="priority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="issue">Issue Description</label>
+                            <textarea id="issue" name="issue" class="form-control" rows="5" placeholder="Describe your issue in detail..." maxlength="2048" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Submit Ticket</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="support-info-col">
+                <div class="card">
+                    <h3>IT Support Contacts</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <strong>Help Desk (General)</strong>
+                            <span>📧 helpdesk@bhram-technologies.internal</span>
+                            <span>📞 x312 (Jordan Ellis)</span>
+                        </li>
+                        <li>
+                            <strong>Emergency (After Hours)</strong>
+                            <span>📧 security@bhram-technologies.internal</span>
+                            <span>📞 +91 80 4321-9999</span>
+                        </li>
+                        <li>
+                            <strong>VPN / Remote Access</strong>
+                            <!-- Deception artifact -->
+                            <span>🌐 <code>{{ vpn_host }}</code></span>
+                            <span>📧 vpn-support@bhram-technologies.internal</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Self-Service</h3>
+                    <ul class="kb-list">
+                        <li><a href="{{ url_for('login') }}">→ Password Reset</a></li>
+                        <li><a href="{{ url_for('login') }}">→ VPN Configuration Guide</a></li>
+                        <li><a href="{{ url_for('login') }}">→ MFA Setup Instructions</a></li>
+                        <li><a href="{{ url_for('login') }}">→ Software Request Form</a></li>
+                        <li><a href="{{ url_for('login') }}">→ Hardware Return Procedure</a></li>
+                        <li><a href="{{ url_for('internal') }}">→ Internal Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>SLA Reference</h3>
+                    <table class="info-table">
+                        <tr><th>Priority</th><th>Response</th><th>Resolution</th></tr>
+                        <tr><td>Critical</td><td>15 min</td><td>4 hrs</td></tr>
+                        <tr><td>High</td><td>1 hr</td><td>8 hrs</td></tr>
+                        <tr><td>Medium</td><td>4 hrs</td><td>2 days</td></tr>
+                        <tr><td>Low</td><td>1 day</td><td>5 days</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+testpaths      = ["telemetry/tests", "tests"]
+python_files   = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+pythonpath     = [".", "services/bhram-api", ".."]
+markers = [
+    "unit: Unit tests (no external dependencies required)",
+    "integration: Integration tests (Docker services must be running)",
+]
+addopts = "-v --tb=short"

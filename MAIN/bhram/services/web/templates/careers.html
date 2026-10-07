@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Careers — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Join Our Team</h1>
+        <p>Help us build the next generation of intelligent cyber-defense technology.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="jobs-grid">
+            <div class="job-card">
+                <div class="job-header">
+                    <h3>Senior Security Engineer</h3>
+                    <span class="job-badge">Engineering</span>
+                </div>
+                <div class="job-meta">
+                    <span>📍 Bengaluru (Hybrid)</span>
+                    <span>💼 Full-time</span>
+                    <span>💰 ₹24–36 LPA</span>
+                </div>
+                <p>Design and implement threat detection systems, contribute to our SIEM platform, and work on advanced honeypot technologies.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-header">
+                    <h3>ML/AI Security Researcher</h3>
+                    <span class="job-badge">Research</span>
+                </div>
+                <div class="job-meta">
+                    <span>📍 Remote</span>
+                    <span>💼 Full-time</span>
+                    <span>💰 ₹30–45 LPA</span>
+                </div>
+                <p>Develop ML models for behavioral anomaly detection, attacker profiling, and automated deception orchestration.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-header">
+                    <h3>DevOps / Infrastructure Engineer</h3>
+                    <span class="job-badge">IT</span>
+                </div>
+                <div class="job-meta">
+                    <span>📍 Bengaluru</span>
+                    <span>💼 Full-time</span>
+                    <span>💰 ₹18–28 LPA</span>
+                </div>
+                <p>Manage Kubernetes clusters, CI/CD pipelines on GitLab, and internal infrastructure on AWS and on-prem hardware.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-header">
+                    <h3>SOC Analyst (Tier 2)</h3>
+                    <span class="job-badge">Security Ops</span>
+                </div>
+                <div class="job-meta">
+                    <span>📍 Bengaluru / Singapore</span>
+                    <span>💼 Full-time</span>
+                    <span>💰 ₹12–20 LPA</span>
+                </div>
+                <p>Monitor client environments, investigate alerts, perform threat hunting, and produce incident reports.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

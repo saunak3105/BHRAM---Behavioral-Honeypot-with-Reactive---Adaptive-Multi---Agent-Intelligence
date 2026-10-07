@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Login — BHRAM Technologies Employee Portal{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#0ea5e9"/>
+                        <path d="M8 16 L16 8 L24 16 L16 24 Z" fill="white" opacity="0.9"/>
+                        <circle cx="16" cy="16" r="4" fill="#0ea5e9"/>
+                    </svg>
+                </div>
+                <h1>Employee Sign In</h1>
+                <p>Access the BHRAM Technologies Employee Portal</p>
+            </div>
+
+            {% if failed %}
+            <div class="auth-alert">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Authentication failed. Please verify your credentials and try again.
+            </div>
+            {% endif %}
+
+            <form class="auth-form" method="POST" action="{{ url_for('login') }}" id="login-form">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" class="form-control"
+                           placeholder="e.g. a.mercer or a.mercer@bhram-technologies.internal"
+                           autocomplete="username" required maxlength="256">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" class="form-control"
+                               placeholder="Enter your password"
+                               autocomplete="current-password" required maxlength="256">
+                        <button type="button" class="input-toggle" onclick="togglePassword()" aria-label="Show/hide password">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="form-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="login-submit">Sign In</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Need access? Contact <a href="mailto:it_support@bhram-technologies.internal">IT Support</a></p>
+                <p class="auth-note">
+                    <!-- Deception artifact: fictional SSO hint -->
+                    SSO via <code>sso.bhram-technologies.internal</code> is also available for federated accounts.
+                </p>
+            </div>
+        </div>
+
+        <div class="auth-info">
+            <div class="auth-info-card">
+                <h3>Employee Resources</h3>
+                <ul>
+                    <li><a href="{{ url_for('documents') }}">📄 Document Portal</a></li>
+                    <li><a href="{{ url_for('support') }}">🛠 IT Support</a></li>
+                    <li><a href="{{ url_for('internal') }}">🏢 Intranet</a></li>
+                    <li><a href="#">📧 Webmail</a></li>
+                    <li><a href="#">🔒 VPN Access</a></li>
+                </ul>
+            </div>
+            <div class="auth-info-card security-notice">
+                <h3>⚠ Security Notice</h3>
+                <p>BHRAM Technologies employees must use MFA for portal access. If you receive an unexpected MFA prompt, report it immediately to <strong>security@bhram-technologies.internal</strong>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function togglePassword() {
+    const pw = document.getElementById('password');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+}
+</script>
+{% endblock %}

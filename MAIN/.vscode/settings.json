@@ -1,0 +1,16 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/bhram/services/bhram-api",
+    "${workspaceFolder}/bhram/services/fileserver",
+    "${workspaceFolder}/bhram/services/web",
+    "${workspaceFolder}/bhram"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/bhram/services/bhram-api",
+    "${workspaceFolder}/bhram/services/fileserver",
+    "${workspaceFolder}/bhram/services/web",
+    "${workspaceFolder}/bhram"
+  ],
+  "python.analysis.typeCheckingMode": "off"
+}

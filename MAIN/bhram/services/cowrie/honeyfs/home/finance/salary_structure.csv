@@ -1,0 +1,11 @@
+grade,title,band,annual_base_inr,bonus_pct,equity_usd,notes
+L1,Junior Engineer,IC1,800000,5,0,Probationary — first 6 months
+L2,Engineer,IC2,1200000,8,5000,Standard
+L3,Senior Engineer,IC3,1800000,12,15000,Standard
+L4,Staff Engineer,IC4,2600000,15,30000,Requires VP approval
+L5,Principal Engineer,IC5,3500000,18,60000,Senior leadership sign-off
+M1,Engineering Manager,M1,2200000,15,25000,People management track
+M2,Senior Manager,M2,3000000,18,50000,
+D1,Director,D1,4500000,22,100000,Executive track
+VP,VP Engineering,EX1,7000000,25,250000,Board visibility
+C,C-Suite,EX2,12000000,30,500000,Board compensation committee

@@ -1,0 +1,11 @@
+id,username,full_name,department,email,phone_extension,office,manager
+1,admin,Alex Mercer,IT / Executive,a.mercer@bhram-technologies.internal,x100,BLR-HQ,CEO
+2,developer,Sam Nakamura,Engineering,s.nakamura@bhram-technologies.internal,x205,BLR-HQ,a.mercer
+3,it_support,Jordan Ellis,IT Support,j.ellis@bhram-technologies.internal,x312,BLR-HQ,a.mercer
+4,finance,Morgan Chen,Finance,m.chen@bhram-technologies.internal,x401,BLR-HQ,a.mercer
+5,hr_manager,Riley Patel,Human Resources,r.patel@bhram-technologies.internal,x502,BLR-HQ,a.mercer
+6,intern,Casey Thompson,Engineering,c.thompson@bhram-technologies.internal,x610,BLR-HQ,s.nakamura
+7,dev_lead,Priya Sharma,Engineering,p.sharma@bhram-technologies.internal,x206,BLR-HQ,s.nakamura
+8,soc_analyst,Ravi Kumar,Security Ops,r.kumar@bhram-technologies.internal,x701,BLR-HQ,a.mercer
+9,devops,Lena Brandt,Engineering,l.brandt@bhram-technologies.internal,x207,BLR-HQ,s.nakamura
+10,sales_mgr,Omar Hassan,Sales,o.hassan@bhram-technologies.internal,x801,SGP,a.mercer

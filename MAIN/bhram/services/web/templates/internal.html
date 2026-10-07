@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Internal Portal — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Internal Intranet</h1>
+        <p>BHRAM Technologies internal collaboration and knowledge management portal.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portal-notice">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Restricted area. <a href="{{ url_for('login') }}">Sign in</a> to access intranet resources.
+        </div>
+
+        <!-- Deception artifact: internal network topology hint -->
+        <div class="internal-notice">
+            <h3>🏢 Internal Network Resources</h3>
+            <p>For internal access only. These services are available only when connected to the BHRAM corporate network or via VPN (<code>{{ vpn_host }}</code>).</p>
+            <ul class="internal-resource-list">
+                <li>📧 Webmail — <code>{{ mail_host }}</code></li>
+                <li>📂 NAS / File Share — <code>nas01.bhram-technologies.internal</code></li>
+                <li>🔧 JIRA — <code>jira.bhram-technologies.internal</code></li>
+                <li>🔀 GitLab — <code>{{ git_host }}</code></li>
+                <li>📊 Grafana — <code>monitoring.bhram-technologies.internal:3000</code></li>
+                <li>🔐 Vault — <code>vault.bhram-technologies.internal:8200</code></li>
+                <li>☸️ K8s Dashboard — <code>k8s-dash.bhram-technologies.internal</code></li>
+                <li>🛡 SOC Platform — <code>soc.bhram-technologies.internal</code></li>
+            </ul>
+        </div>
+
+        <div class="portal-grid" style="margin-top: 2rem;">
+            <div class="portal-card locked">
+                <div class="portal-icon">🗂</div>
+                <h3>Knowledge Base</h3>
+                <p>Internal wiki, runbooks, and technical documentation.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">📢</div>
+                <h3>Announcements</h3>
+                <p>Company-wide communications and department notices.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">📅</div>
+                <h3>Calendar & Events</h3>
+                <p>Company events, all-hands meetings, and team schedules.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">🔐</div>
+                <h3>Security Policies</h3>
+                <p>Information security policies, acceptable use, and incident reporting procedures.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

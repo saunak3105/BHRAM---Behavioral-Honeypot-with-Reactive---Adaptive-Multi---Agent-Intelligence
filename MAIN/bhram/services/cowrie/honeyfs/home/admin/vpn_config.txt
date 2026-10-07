@@ -1,0 +1,37 @@
+# BHRAM Technologies VPN Configuration
+# Generated: 2025-07-14 09:23:11 UTC
+# Config Version: 3.1.2
+# =====================================================================
+# NOTICE: This configuration file is for internal use only.
+# Unauthorized access or distribution is strictly prohibited.
+# Contact: it_support@bhram-technologies.internal
+# =====================================================================
+
+[Interface]
+# Client private key — ROTATE QUARTERLY
+PrivateKey = FAKE_PRIVATE_KEY_NOT_REAL_bHi4fXLkCzR9mNpQvWsYjEaOgTdU2IwK=
+Address = 10.8.0.47/24
+DNS = 10.8.0.1, 8.8.8.8
+
+[Peer]
+# BHRAM VPN Gateway — Singapore DC
+PublicKey = FAKE_PUBLIC_KEY_NOT_REAL_XR4kP9vLmY2aQdTjNsIuEwBgHfOcZ7Wt=
+Endpoint = vpn.bhram-technologies.internal:51820
+AllowedIPs = 10.0.0.0/8, 172.16.0.0/12, 192.168.100.0/24
+PersistentKeepalive = 25
+
+# Internal network ranges accessible via VPN:
+#   10.8.0.0/24     — VPN clients
+#   10.0.1.0/24     — Production servers (Bengaluru DC)
+#   10.0.2.0/24     — Dev/Staging (Bengaluru DC)
+#   10.0.10.0/24    — Singapore DC
+#   172.16.100.0/24 — Management plane
+#
+# Key internal hosts (accessible after VPN connect):
+#   intranet.bhram-technologies.internal  10.0.1.10
+#   gitlab.bhram-technologies.internal    10.0.1.15
+#   monitoring.bhram-technologies.internal 10.0.1.20
+#   nas01.bhram-technologies.internal     10.0.1.25
+#   soc.bhram-technologies.internal       10.0.1.30
+#   vault.bhram-technologies.internal     10.0.1.35
+#   k8s-master.bhram-technologies.internal 10.0.1.40

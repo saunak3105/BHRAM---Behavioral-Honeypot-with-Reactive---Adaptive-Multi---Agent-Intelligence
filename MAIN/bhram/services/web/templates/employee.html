@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Employee Portal — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Employee Portal</h1>
+        <p>Internal resources, tools, and company information for BHRAM Technologies staff.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portal-notice">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            You must <a href="{{ url_for('login') }}">sign in</a> to access restricted employee resources.
+        </div>
+
+        <div class="portal-grid">
+            <div class="portal-card">
+                <div class="portal-icon">📄</div>
+                <h3>Document Portal</h3>
+                <p>Access company documents, policies, SOPs, and internal reports.</p>
+                <a href="{{ url_for('documents') }}" class="btn btn-outline">Open Documents</a>
+            </div>
+            <div class="portal-card">
+                <div class="portal-icon">🛠</div>
+                <h3>IT Support</h3>
+                <p>Raise a support ticket, request software, or report an IT issue.</p>
+                <a href="{{ url_for('support') }}" class="btn btn-outline">Open IT Support</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">🔒</div>
+                <h3>HR Self-Service</h3>
+                <p>Manage leave, view payslips, and update personal information.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">🔒</div>
+                <h3>Finance Portal</h3>
+                <p>Expense claims, purchase orders, and budget reports.</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">🔒</div>
+                <h3>Development Hub</h3>
+                <p>Internal GitLab, CI/CD pipelines, and development documentation.</p>
+                <!-- Deception artifact: internal git hostname -->
+                <small class="portal-hint">Access via <code>{{ git_host }}</code></small>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+            <div class="portal-card locked">
+                <div class="portal-icon">🔒</div>
+                <h3>VPN Management</h3>
+                <p>Download VPN configuration, manage certificates, and revoke access.</p>
+                <!-- Deception artifact: vpn hostname -->
+                <small class="portal-hint">VPN endpoint: <code>{{ vpn_host }}</code></small>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In Required</a>
+            </div>
+        </div>
+
+        <!-- Employee Directory preview (deception artifact) -->
+        <div class="section-header" style="margin-top: 3rem;">
+            <h2>Department Directory</h2>
+            <p>Partial directory — full access requires authentication.</p>
+        </div>
+        <div class="directory-table-wrapper">
+            <table class="directory-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Extension</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alex Mercer</td>
+                        <td><code>admin</code></td>
+                        <td>IT / Executive</td>
+                        <td>a.mercer@bhram-technologies.internal</td>
+                        <td>x100</td>
+                    </tr>
+                    <tr>
+                        <td>Sam Nakamura</td>
+                        <td><code>developer</code></td>
+                        <td>Engineering</td>
+                        <td>s.nakamura@bhram-technologies.internal</td>
+                        <td>x205</td>
+                    </tr>
+                    <tr>
+                        <td>Jordan Ellis</td>
+                        <td><code>it_support</code></td>
+                        <td>IT Support</td>
+                        <td>j.ellis@bhram-technologies.internal</td>
+                        <td>x312</td>
+                    </tr>
+                    <tr>
+                        <td>Morgan Chen</td>
+                        <td><code>finance</code></td>
+                        <td>Finance</td>
+                        <td>m.chen@bhram-technologies.internal</td>
+                        <td>x401</td>
+                    </tr>
+                    <tr>
+                        <td>Riley Patel</td>
+                        <td><code>hr_manager</code></td>
+                        <td>Human Resources</td>
+                        <td>r.patel@bhram-technologies.internal</td>
+                        <td>x502</td>
+                    </tr>
+                    <tr>
+                        <td>Casey Thompson</td>
+                        <td><code>intern</code></td>
+                        <td>Engineering</td>
+                        <td>c.thompson@bhram-technologies.internal</td>
+                        <td>x610</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

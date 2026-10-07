@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Documents — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Document Portal</h1>
+        <p>Company documents, policies, SOPs, and technical resources.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portal-notice">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Some documents are restricted. <a href="{{ url_for('login') }}">Sign in</a> to access confidential files.
+        </div>
+
+        <!-- Deception artifact: fake file listing with sensitive-looking names -->
+        <div class="docs-section">
+            <h2>Public Documents</h2>
+            <div class="file-list">
+                <div class="file-item">
+                    <span class="file-icon">📄</span>
+                    <div class="file-info">
+                        <span class="file-name">Employee_Handbook_2025.pdf</span>
+                        <span class="file-meta">HR Department · PDF · 2.4 MB · Updated 2025-08-01</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Download</a>
+                </div>
+                <div class="file-item">
+                    <span class="file-icon">📄</span>
+                    <div class="file-info">
+                        <span class="file-name">Information_Security_Policy_v3.pdf</span>
+                        <span class="file-meta">IT Security · PDF · 1.1 MB · Updated 2025-07-15</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Download</a>
+                </div>
+                <div class="file-item">
+                    <span class="file-icon">📄</span>
+                    <div class="file-info">
+                        <span class="file-name">Acceptable_Use_Policy.pdf</span>
+                        <span class="file-meta">IT · PDF · 0.8 MB · Updated 2025-06-10</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="docs-section">
+            <h2>🔒 Restricted — Authentication Required</h2>
+            <div class="file-list">
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">employee_directory.csv</span>
+                        <span class="file-meta">HR · CSV · 8.2 KB · /srv/internal/employee_directory.csv</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">salary_structure.csv</span>
+                        <span class="file-meta">Finance · CSV · 4.1 KB · CONFIDENTIAL</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">vpn_config.txt</span>
+                        <span class="file-meta">IT Infrastructure · TXT · 1.0 KB · RESTRICTED</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">internal_roadmap_2026.pdf</span>
+                        <span class="file-meta">Leadership · PDF · 200 MB · CONFIDENTIAL</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">database_backup.sql</span>
+                        <span class="file-meta">Engineering · SQL · 64 KB · /home/admin/backup/</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+                <div class="file-item file-locked">
+                    <span class="file-icon">🔒</span>
+                    <div class="file-info">
+                        <span class="file-name">network_inventory.txt</span>
+                        <span class="file-meta">IT · TXT · 3.0 KB · RESTRICTED</span>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="file-action">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

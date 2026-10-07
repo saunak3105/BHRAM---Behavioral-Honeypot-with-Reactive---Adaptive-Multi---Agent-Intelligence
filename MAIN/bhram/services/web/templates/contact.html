@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Contact — BHRAM Technologies{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Get in touch with our team for sales, support, or partnership inquiries.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-form-col">
+                <div class="card">
+                    <h2>Send a Message</h2>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}{% for c, m in messages %}
+                    <div class="flash flash-{{ c }}">{{ m }}</div>
+                    {% endfor %}{% endif %}{% endwith %}
+                    <form method="POST" action="{{ url_for('contact') }}" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required maxlength="128">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Business Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required maxlength="256">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" class="form-control" maxlength="128">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" class="form-control">
+                                <option>Sales Inquiry</option>
+                                <option>Partnership</option>
+                                <option>Technical Support</option>
+                                <option>Press / Media</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required maxlength="2048"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="contact-info-col">
+                <div class="card">
+                    <h3>Office Locations</h3>
+                    <div class="office">
+                        <strong>🇮🇳 Bengaluru (HQ)</strong>
+                        <address>12 Innovation Drive, Suite 400<br>Techpark, Bengaluru 560 001<br>📞 +91 80 4321-0000</address>
+                    </div>
+                    <div class="office">
+                        <strong>🇸🇬 Singapore</strong>
+                        <address>One Raffles Place, #21-05<br>Singapore 048616<br>📞 +65 6321-0000</address>
+                    </div>
+                    <div class="office">
+                        <strong>🇬🇧 London</strong>
+                        <address>30 Finsbury Square<br>London EC2A 1AG, UK<br>📞 +44 20 7321-0000</address>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Direct Contacts</h3>
+                    <ul class="contact-list">
+                        <li><strong>Sales</strong> <a href="#">sales@bhram-technologies.com</a></li>
+                        <li><strong>Support</strong> <a href="#">support@bhram-technologies.com</a></li>
+                        <li><strong>Security</strong> <a href="#">security@bhram-technologies.com</a></li>
+                        <li><strong>Press</strong> <a href="#">press@bhram-technologies.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

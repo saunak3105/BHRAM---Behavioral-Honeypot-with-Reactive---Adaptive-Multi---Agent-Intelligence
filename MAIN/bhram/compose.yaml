@@ -1,0 +1,188 @@
+# =============================================================================
+# BHRAM — Docker Compose v3 (Compose Specification)
+# Behavioral Honeypot with Reactive-Adaptive Multi-Agent Intelligence
+#
+# NETWORK TOPOLOGY:
+#   frontend  → attacker-reachable (web app, SSH honeypot)
+#   backend   → internal services (API, file server, DB)
+#   internal  → management plane (not exposed)
+#
+# SECURITY:
+#   - Database NOT exposed to attacker networks
+#   - API / file server NOT directly exposed to attacker
+#   - SSH honeypot has no access to internal networks
+# =============================================================================
+
+name: bhram
+
+# ─── Networks ────────────────────────────────────────────────────────────────
+networks:
+  frontend:
+    name: bhram_frontend
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+  backend:
+    name: bhram_backend
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+  internal:
+    name: bhram_internal
+    driver: bridge
+    internal: true          # no external routing at all
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+
+# ─── Volumes ─────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+  cowrie_logs:
+  company_files:
+
+# ─── Services ────────────────────────────────────────────────────────────────
+services:
+
+  # ── PostgreSQL ─────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: bhram_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-bhram_db}
+      POSTGRES_USER: ${POSTGRES_USER:-bhram_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword_not_for_production}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+    networks:
+      - internal        # DB ONLY on internal — never frontend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-bhram_user} -d ${POSTGRES_DB:-bhram_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # No ports exposed to host — intentional security boundary
+    expose:
+      - "5432"
+
+  # ── BHRAM API (FastAPI) ─────────────────────────────────────────────────────
+  bhram-api:
+    build:
+      context: ./services/bhram-api
+      dockerfile: Dockerfile
+    container_name: bhram_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-bhram_db}
+      POSTGRES_USER: ${POSTGRES_USER:-bhram_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword_not_for_production}
+      BHRAM_API_DEBUG: ${BHRAM_API_DEBUG:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - backend
+      - internal
+    ports:
+      - "127.0.0.1:8000:8000"   # bind to loopback only — not attacker-reachable
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Fake Company Web Application (Flask) ───────────────────────────────────
+  web:
+    build:
+      context: ./services/web
+      dockerfile: Dockerfile
+    container_name: bhram_web
+    restart: unless-stopped
+    environment:
+      FLASK_ENV: production
+      FLASK_SECRET_KEY: ${BHRAM_API_SECRET_KEY:-devsecret_not_for_production}
+    networks:
+      - frontend    # attacker-reachable
+      - backend     # so API can be queried internally if needed
+    ports:
+      - "0.0.0.0:8080:5000"    # public-facing honeypot web app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ── File Server ────────────────────────────────────────────────────────────
+  fileserver:
+    build:
+      context: ./services/fileserver
+      dockerfile: Dockerfile
+    container_name: bhram_fileserver
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-bhram_db}
+      POSTGRES_USER: ${POSTGRES_USER:-bhram_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword_not_for_production}
+    volumes:
+      - company_files:/srv/company-files
+      - ./data/decoy-files:/srv/company-files/static:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - backend     # internal only — NOT frontend
+      - internal
+    ports:
+      - "127.0.0.1:8081:8081"  # loopback only
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ── Cowrie SSH Honeypot ────────────────────────────────────────────────────
+  cowrie:
+    build:
+      context: ./services/cowrie
+      dockerfile: Dockerfile
+    container_name: bhram_cowrie
+    restart: unless-stopped
+    volumes:
+      - cowrie_logs:/home/cowrie/var/log/cowrie
+      - ./services/cowrie/cowrie.cfg:/home/cowrie/etc/cowrie.cfg:ro
+      - ./services/cowrie/userdb.txt:/home/cowrie/etc/userdb.txt:ro
+      - ./services/cowrie/honeyfs:/home/cowrie/honeyfs:ro
+    networks:
+      - frontend    # honeypot IS attacker-reachable
+      # cowrie has NO access to backend or internal networks
+    ports:
+      - "0.0.0.0:2222:2222"   # SSH honeypot — standard honeypot port
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f twistd || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # Cowrie runs as unprivileged user (uid 1000) inside container
+    user: "1000:1000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: false   # cowrie needs to write logs
+    tmpfs:
+      - /tmp:size=64m

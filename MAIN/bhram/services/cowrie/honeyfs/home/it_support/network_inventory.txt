@@ -1,0 +1,43 @@
+BHRAM Technologies — Network Inventory
+Maintained by: IT Infrastructure (Jordan Ellis)
+Last updated: 2025-09-05
+Classification: INTERNAL — DO NOT DISTRIBUTE
+================================================================
+
+= Core Network Ranges =
+10.0.0.0/8    — Internal corporate
+172.16.0.0/12 — Management plane
+192.168.100.0/24 — On-prem lab/dev
+10.8.0.0/24   — VPN clients
+
+= Production Infrastructure (Bengaluru DC) =
+Subnet: 10.0.1.0/24
+
+10.0.1.1    bdr-fw01.internal      Fortinet FortiGate 600F (Firewall/UTM)
+10.0.1.2    bdr-fw02.internal      Fortinet FortiGate 600F (HA Standby)
+10.0.1.5    core-sw01.internal     Cisco Nexus 9336C-FX2 (Core Switch)
+10.0.1.10   intranet.internal      BHRAM Intranet (Ubuntu 22.04 / Nginx)
+10.0.1.15   gitlab.internal        GitLab EE 16.9 (Ubuntu 22.04)
+10.0.1.20   monitoring.internal    Grafana + Prometheus (Ubuntu 22.04)
+10.0.1.25   nas01.internal         TrueNAS Scale 23.10 (24TB usable)
+10.0.1.30   soc.internal           BHRAM SOC Platform (Ubuntu 22.04)
+10.0.1.35   vault.internal         HashiCorp Vault 1.15 (Ubuntu 22.04)
+10.0.1.40   k8s-master.internal    Kubernetes 1.29 master node
+10.0.1.41   k8s-worker-01.internal K8s worker (32 vCPU / 128GB RAM)
+10.0.1.42   k8s-worker-02.internal K8s worker (32 vCPU / 128GB RAM)
+10.0.1.43   k8s-worker-03.internal K8s worker (32 vCPU / 128GB RAM)
+10.0.1.50   db-primary.internal    PostgreSQL 15.4 primary (Ubuntu 22.04)
+10.0.1.51   db-replica.internal    PostgreSQL 15.4 replica
+10.0.1.55   redis.internal         Redis 7.2 (Ubuntu 22.04)
+10.0.1.60   kafka-01.internal      Kafka 3.6 broker 1
+10.0.1.61   kafka-02.internal      Kafka 3.6 broker 2
+10.0.1.62   kafka-03.internal      Kafka 3.6 broker 3
+10.0.1.70   mail.internal          Postfix + Dovecot (Ubuntu 22.04)
+10.0.1.80   vpn.internal           WireGuard VPN gateway
+
+= Singapore DC =
+Subnet: 10.0.10.0/24
+
+10.0.10.10  sgp-web01.internal     Web frontend (Nginx)
+10.0.10.15  sgp-db01.internal      PostgreSQL read replica
+10.0.10.20  sgp-cache.internal     Redis cache
